@@ -1,27 +1,78 @@
 # Privacy Policy for AQUA
+**Effective Date:** September 2026  
+**Version:** 2.0 (Deterministic Engine)
 
-**Effective Date: September 2026**
+AQUA (“the App”) is developed by Manman Zhang as an entirely offline, deterministic metabolic telemetry engine. We believe that personal physiological metrics belong exclusively to the individual and should never be transmitted across the public internet.
 
-AQUA ("the App") is developed by Manman Zhang as an offline-first metabolic telemetry engine. We believe your physiological data belongs exclusively to you. 
+This Privacy Policy outlines how data is managed within AQUA V2.0.
 
-This Privacy Policy explains how we handle your data when you use AQUA.
+---
 
-### 1. On-Device AI & One-Time Model Download
-AQUA is built around a Small Language Model (SLM) that runs entirely locally on your iPhone. To enable this offline capability, the App requires a one-time internet connection upon initial launch to download the necessary open-source model weights. 
-* **Strictly One-Way Fetch:** This network request is used exclusively to download the model files. **We do not collect, transmit, store, or share your personal data, health metrics, or usage logs to any external servers during this download or at any other time.** Once the model is mounted, AQUA's core engine operates 100% offline.
+### 1. 100% Offline & Zero-Network Architecture
+AQUA operates under a strict offline-first, air-gapped design principle:
+- **No Network Transmission:** The App does not initiate outbound network requests, ping remote telemetry servers, or require cloud connectivity.
+- **No User Accounts:** AQUA requires no sign-up, login, account creation, or personal identifier verification.
+- **Deterministic Local Computation:** All physiological modeling, glucose trajectory estimations, digital twin calibrations, and morning readiness summaries are calculated purely on-device via local algorithmic execution.
 
-### 2. Apple HealthKit Integration
-AQUA requests read and write access to specific Apple Health data (such as Blood Glucose, Heart Rate Variability, Resting Heart Rate, Sleep Analysis, and Active Energy) via the HealthKit framework. 
-*   **How we use it:** We use this data strictly to compute local metabolic residual trajectories and render your personalized dashboard. 
-*   **Data Protection:** Your HealthKit data never leaves your device. We do not sell your HealthKit data to advertising platforms, data brokers, or information resellers. AQUA fully complies with Apple's HealthKit data and privacy guidelines.
+---
 
-### 3. Microphone & Speech Recognition
-AQUA requests Microphone and Speech Recognition access to allow hands-free logging of your physiological context (e.g., meals or stress events).
-*   Audio is processed using Apple's native, on-device frameworks. We do not upload your voice recordings to any third-party APIs or external cloud services.
+### 2. Apple HealthKit Integration (Read-Only)
+AQUA requests strictly **read-only** permission to access specific physiological markers from the Apple HealthKit framework:
+- Blood Glucose
+- Heart Rate Variability (SDNN)
+- Resting Heart Rate
+- Sleep Analysis intervals
+- Active Energy Burned (Workouts)
 
-### 4. Third-Party Services
-Because AQUA operates primarily offline after the initial setup, it does not integrate with third-party analytics trackers, crash reporters, or advertising networks. 
+**Usage & Scope:**  
+This telemetry is queried solely to evaluate baseline recovery trends and to project short-term postprandial glucose dynamics within the App's user interface.
 
-### 5. Contact Us
-If you have any questions or concerns about this Privacy Policy or your data, please contact us at:
-**Email:** aqua.health.feedback@gmail.com
+**Apple HealthKit Data Protection (Guideline 5.1.1(v)):**
+- **Strictly Local:** HealthKit telemetry never leaves your device sandbox and is never cached on external cloud infrastructure.
+- **No Advertising or Data Mining:** AQUA will **never** sell, license, or disclose your HealthKit data to advertising platforms, data brokers, information resellers, or third-party analytic networks.
+- **No Marketing Use:** Your health data will never be utilized for marketing, behavioral profiling, or advertising targeting.
+
+---
+
+### 3. Local Data Storage & Persistence
+All historical records—including morning briefings, food archetype logs, and calibrated response curves—are persisted exclusively within your device’s local **SwiftData** encrypted database sandbox. 
+
+AQUA has no backend database, no cloud synchronization services, and no mechanism to inspect your stored logs remotely.
+
+---
+
+### 4. Background Processing & Local Notifications
+AQUA utilizes Apple's native background task infrastructure (`BGProcessingTaskScheduler`) and local notification system (`UNUserNotificationCenter`):
+- **Local Notification Triggering:** All alerts—such as morning readiness briefs and 1-tap spike categorization menus—are scheduled and triggered entirely on-device.
+- **No Remote Push Gateways:** AQUA does not use Apple Push Notification service (APNs) servers or third-party push providers.
+- **Zero-Wake Leakage:** Background calculations execute purely within local runtime constraints without communicating external state.
+
+---
+
+### 5. Zero Third-Party Analytics & SDKs
+AQUA contains no third-party tracking libraries, advertising SDKs, behavioral analytics engines, or external crash-reporting suites (e.g., Google Firebase, Meta SDK, Adjust, Mixpanel). Your activity within the App remains completely private and unmonitored.
+
+---
+
+### 6. Data Ownership, Control & Deletion
+You retain complete control over your health metrics:
+- **Revoking Permissions:** You can revoke AQUA’s HealthKit access at any time via iOS **Settings > Health > Data Access & Devices > Aqua**.
+- **Permanent Deletion:** Deleting an entry inside the App permanently removes it from the local database. Uninstalling the AQUA application permanently deletes all historical telemetry logs and digital twin profile data from your iPhone.
+
+---
+
+### 7. Non-Medical Wellness Disclaimer (Guideline 1.4.1)
+**AQUA is an athletic awareness and lifestyle optimization tool. It is NOT a certified medical device and does NOT provide medical advice, clinical diagnoses, or therapeutic treatments.**
+
+The calculations, glucose response curves, and readiness scores generated by AQUA are algorithmic approximations intended exclusively for personal lifestyle and athletic reference. 
+- The App must never be used to guide insulin dosing, adjust medications, diagnose metabolic conditions, or replace professional medical consultations.
+- If you have diabetes, hypoglycemia, or any medical condition, always seek the guidance of a physician or qualified healthcare provider before altering your diet, exercise, or medical regimen.
+
+---
+
+### 8. Contact Information
+For inquiries, feedback, or support regarding this Privacy Policy or AQUA’s local-first architecture, please reach out to:
+
+**Developer:** Manman Zhang  
+**Email:** aqua.health.feedback@gmail.com  
+**Website:** https://aqua-health.github.io/
